@@ -1,8 +1,6 @@
 package br.com.debora.screenmatch;
 
-import br.com.debora.screenmatch.model.DadosSerie;
-import br.com.debora.screenmatch.service.ConsumoAPI;
-import br.com.debora.screenmatch.service.ConverteDados;
+import br.com.debora.screenmatch.principal.Principal;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,13 +14,9 @@ public class ScreenmatchApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		var consumoAPI = new ConsumoAPI();
+		Principal principal = new Principal();
+		principal.exibeMenu();
 
-		var json = consumoAPI.obterDados("https://www.omdbapi.com/?t=Gilmore+girls&apikey=6c3e49be");
-		System.out.println(json);
 
-		ConverteDados conversor = new ConverteDados();
-		DadosSerie dados = conversor.obterDados(json, DadosSerie.class);
-		System.out.println(dados);
 	}
 }
